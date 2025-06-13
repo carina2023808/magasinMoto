@@ -1,0 +1,10 @@
+   <nav class="navbar ">
+            <a class="navbar-brand" href={{ url('app_moto_index') }}>Magasin Moto</a>
+           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{app.current_route starts with 'app_moto_'  ? 'active' : ''}}" href={{ url('app_moto_index') }}>Liste Motos</a>
+                    </li>
+                </ul>
+          </div>
+        </nav>

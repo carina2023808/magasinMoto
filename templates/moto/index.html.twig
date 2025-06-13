@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Moto index{% endblock %}
+
+{% block body %}
+    <h1>Liste de Motos </h1>
+
+    <div class="moto-card-container">
+        {% for moto in motos %}
+            <div class="moto-card">
+             {# <h2><a href={{ path('app_moto_show', {id : moto.id, marque : moto.marque})}}>{{ moto.marque}} </a></h2> #}
+             <h2 class="title">{{moto.marque}}</h2>
+                <img src="https://ridingskills.com.br/wp-content/uploads/2015/05/IMG_1135-Small.jpg" width="150" height="200">
+                <div class="moto-details">
+                    <h2 class="moto-title" >{{ moto.nom }}</h2>
+                    <p><strong>Marque:</strong> {{ moto.marque }}</p>
+                    <p><strong>Année:</strong> {{ moto.annee }}</p>
+                    <p><strong>Couleur:</strong> {{ moto.couleur }}</p>
+                    <p><strong>Prix:</strong> {{ moto.prix }} €</p>
+
+                    <div class="moto-buttons">
+                        <div  class =" btn_form" method="post" action="{{ path('app_moto_delete', {'id': moto.id}) }}" onsubmit="return confirm('Tem certeza que deseja excluir?');" style="display: inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ moto.id) }}">
+                            <button class="btn btn-delete">Delete</button>
+                        </div>
+                        <a href="{{ path('app_moto_edit', {'id': moto.id}) }}" class="btn btn-edit">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>Aucune moto trouvée.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_moto_new') }}" class="btn btn-create">Créer une nouvelle moto</a>
+{% endblock %}
